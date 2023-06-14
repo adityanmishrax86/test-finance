@@ -1,12 +1,20 @@
 
 import './App.css'
 
+
+
+
 function App() {
 
+  function login() {
+    window.location.href = '/login';
+  }
+  
 
   return (
     <>
-      <h1>Hello World</h1>
+      <button onClick={login}>Login</button>
+
     </>
   )
 }
