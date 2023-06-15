@@ -1,1 +1,4 @@
-# Finance Tracker
+## Finance Tracker FE
+
+Built with vite
+
