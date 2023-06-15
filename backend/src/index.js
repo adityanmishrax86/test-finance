@@ -13,10 +13,7 @@ app.use(express.json());
 
 const config = {
   authRequired: false,
-  auth0Logout: true,
-  secret:process.env.SECRET,
-  clientID:process.env.CLIENT_ID,
-  issuerBaseURL:"https://"+process.env.ISSUER_BASE_URL
+  auth0Logout: true
 };
 
 const port = process.env.PORT || 3000;
@@ -34,7 +31,7 @@ app.get('/profile', requiresAuth(), (req, res, next) => {
 
 app.get('/', (req, res) => {
   const isAuthenticated = req.oidc?.isAuthenticated()
-  res.status(200).json({'status': isAuthenticated ? 'Logged In' : "Logged Out"});
+  res.status(200).json({'success': isAuthenticated ? true : false});
 });
 
 
