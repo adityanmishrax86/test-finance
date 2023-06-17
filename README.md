@@ -14,7 +14,7 @@
  - For deployment related changes add to deployment directory
  - Please update all the steps required to deploy or access the application frontend or backend locally for debug purpose
  - In Deployment we can show how to setup for live dev env on the web
- - 
+ - if you are changing anything directly in other branch, then do not merge PR to main branch
 
  ## Commit message
  Branch Naming Convention

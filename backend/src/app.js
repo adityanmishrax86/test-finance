@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const AuthRouter = require("./routes/auth.routes");
+const UserRouter = require("./routes/user.route");
 const { ensureAuthenticated } = require("./middlewares/index");
 
 const dotenv = require('dotenv');
@@ -9,9 +10,23 @@ const dotenv = require('dotenv');
 const logger = require("morgan");
 const setupPassport = require('./middlewares/passport');
 
+const helmet = require("helmet");
+const cors = require("cors");
+
 dotenv.config();
 
 const app = express();
+
+
+app.set('trust proxy', true);
+
+app.use(helmet())
+app.use(cors(
+    {
+        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        credentials: true, // allow session cookie from browser to pass through
+    }
+))
 
 // Middlewares
 app.use(logger('dev'));
@@ -33,10 +48,13 @@ app.use(passport.session());
 setupPassport();
 
 app.get('/', (req, res, next) => {
-    res.send(req.user ? { 'status': true } : { 'status': false });
+    res.send({
+        status: req.user ? true : false
+    });
 })
 
 app.use("/auth", AuthRouter);
+app.use("/user", UserRouter);
 
 // Auth0 callback route
 app.get(
@@ -55,7 +73,8 @@ app.get(
 // Profile route to display user details
 app.get('/profile', ensureAuthenticated, (req, res) => {
     res.send({
-        user: req.user
+        status: true,
+        user: Object.keys(req.user).length > 0 ? req.user : req.username
     });
 });
 
