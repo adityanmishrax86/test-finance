@@ -61,24 +61,25 @@ Examples:
 
 ## Enumerate the type of questions the user might ask the AI system
  
-| SL No | Question | Answer |
-| 1 | "How much have I spent on groceries this month?" | "You have spent $450 on groceries this month." |
-| 2 | "What's the total amount of income I received last quarter?" | "The total amount of income you received last quarter was $15,000." |
-| 3 | "What are my top three spending categories this year?" | "Your top three spending categories this year are housing ($12,000), transportation ($5,000), and groceries ($3,000)." |
-| 4 | "What was my highest expense last week?" | "Your highest expense last week was $200 for a car repair." |
-| 5 | "Show me a breakdown of my spending by category for the past six months." | "Your spending breakdown by category for the past six months is: Rent - 40%, Groceries - 20%, Transportation - 15%, Dining Out - 10%, Entertainment - 5%, Others - 10%." |
-| 6 | "How much interest have I earned on my savings account this year?" | "You have earned $250 in interest on your savings account this year." |
-| 7 | "What's the current value of my stock portfolio?" | "The current value of your stock portfolio is $10,000." |
-| 8 | "How much did I spend on online shopping in the last three months?" | "You spent $300 on online shopping in the last three months." |
-| 9 | "How much money did I save last year compared to the previous one?" | "You saved $2,000 last year, an increase of $500 compared to the previous year." |
-| 10 | "What's my average monthly expenditure on utilities like electricity and gas?" | "Your average monthly expenditure on utilities like electricity and gas is $120." |
-| 11 | "Did I set any budget for dining out this month?" | "Yes, you have set a budget of $200 for dining out this month." |
-| 12 | "How much do I spend on average for transportation each month?" | "On average, you spend $50 on transportation each month." |
-| 13 | "How much did I spend on healthcare last year?" | "You spent $800 on healthcare last year." |
-| 14 | "What's my projected savings by the end of the year at my current spending rate?" | "Based on your current spending rate, your projected savings by the end of the year would be $3,000." |
-| 15 | "What was my biggest investment gain last quarter?" | "Your biggest investment gain last quarter was from ABC stocks, which gained $500 in value." |
-| 16 | "What's the ROI on my real estate investments?" | "The ROI on your real estate investments is 5% annually." |
-| 17 | . "How much money do I have in my retirement account?" | "You have $50,000 in your retirement account." |
-| 18 | "How close am I to my savings goal for this year?" | "You are 75% close to your savings goal for this year." |
-| 19 | . "What percentage of my income am I saving each month?" | "You are saving 20% of your income each month." |
-| 20 | . "What's the breakdown of my income sources for the last fiscal year?" | "The breakdown of your income sources for the last fiscal year is: Salary - 80%, Investments - 15%, Others - 5%." |
+| SL No |                                      Question                                     |                                                                                  Answer                                                                                  |
+|:-----:|:---------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| 1     | "How much have I spent on groceries this month?"                                  | "You have spent $450 on groceries this month."                                                                                                                           |
+| 2     | "What's the total amount of income I received last quarter?"                      | "The total amount of income you received last quarter was $15,000."                                                                                                      |
+| 3     | "What are my top three spending categories this year?"                            | "Your top three spending categories this year are housing ($12,000), transportation ($5,000), and groceries ($3,000)."                                                   |
+| 4     | "What was my highest expense last week?"                                          | "Your highest expense last week was $200 for a car repair."                                                                                                              |
+| 5     | "Show me a breakdown of my spending by category for the past six months."         | "Your spending breakdown by category for the past six months is: Rent - 40%, Groceries - 20%, Transportation - 15%, Dining Out - 10%, Entertainment - 5%, Others - 10%." |
+| 6     | "How much interest have I earned on my savings account this year?"                | "You have earned $250 in interest on your savings account this year."                                                                                                    |
+| 7     | "What's the current value of my stock portfolio?"                                 | "The current value of your stock portfolio is $10,000."                                                                                                                  |
+| 8     | "How much did I spend on online shopping in the last three months?"               | "You spent $300 on online shopping in the last three months."                                                                                                            |
+| 9     | "How much money did I save last year compared to the previous one?"               | "You saved $2,000 last year, an increase of $500 compared to the previous year."                                                                                         |
+| 10    | "What's my average monthly expenditure on utilities like electricity and gas?"    | "Your average monthly expenditure on utilities like electricity and gas is $120."                                                                                        |
+| 11    | "Did I set any budget for dining out this month?"                                 | "Yes, you have set a budget of $200 for dining out this month."                                                                                                          |
+| 12    | "How much do I spend on average for transportation each month?"                   | "On average, you spend $50 on transportation each month."                                                                                                                |
+| 13    | "How much did I spend on healthcare last year?"                                   | "You spent $800 on healthcare last year."                                                                                                                                |
+| 14    | "What's my projected savings by the end of the year at my current spending rate?" | "Based on your current spending rate, your projected savings by the end of the year would be $3,000."                                                                    |
+| 15    | "What was my biggest investment gain last quarter?"                               | "Your biggest investment gain last quarter was from ABC stocks, which gained $500 in value."                                                                             |
+| 16    | "What's the ROI on my real estate investments?"                                   | "The ROI on your real estate investments is 5% annually."                                                                                                                |
+| 17    | . "How much money do I have in my retirement account?"                            | "You have $50,000 in your retirement account."                                                                                                                           |
+| 18    | "How close am I to my savings goal for this year?"                                | "You are 75% close to your savings goal for this year."                                                                                                                  |
+| 19    | . "What percentage of my income am I saving each month?"                          | "You are saving 20% of your income each month."                                                                                                                          |
+| 20    | . "What's the breakdown of my income sources for the last fiscal year?"           | "The breakdown of your income sources for the last fiscal year is: Salary - 80%, Investments - 15%, Others - 5%."                                                        |
