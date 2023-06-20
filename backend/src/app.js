@@ -3,6 +3,7 @@ const session = require('express-session');
 const passport = require('passport');
 const AuthRouter = require("./routes/auth.routes");
 const UserRouter = require("./routes/user.route");
+const ExpenseRouter = require("./routes/userexpenses.routes");
 const { ensureAuthenticated } = require("./middlewares/index");
 
 const dotenv = require('dotenv');
@@ -55,6 +56,7 @@ app.get('/', (req, res, next) => {
 
 app.use("/auth", AuthRouter);
 app.use("/user", UserRouter);
+app.use("/expenses", ExpenseRouter);
 
 // Auth0 callback route
 app.get(
