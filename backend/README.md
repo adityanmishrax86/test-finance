@@ -55,3 +55,5 @@
 |`http://backend/user/update/:id` |  Update User Details | PUT | [0]/[1] 0 - Not updated/ 1 Updated |
 |`http://backend/auth/signup` | Signup | POST `{	"name":"awdsa",	"email":"awdsa@gmail.com",	"password":"Hellothere"}` | `{	"status": false,	"message": "User is already registered with us. Please Login with the given Email address."}`|
 | `http://backend/auth/login` | Login | POST ` {	"username":"dtmishra43@gmail.com" ,"password":"Hellothere"} `| `{	"status": true,	"user": {		"name": "Aditya Narayan Mishra",		"id": "2b9959ed-3056-48bf-8f68-9206c768d594"	}}` |
+| `http://backend/expenses/all` | Get ALl Expenses by User | POST `{ "id":"uuid" }` | `{ expense_data }` |
+| `http://backend/expenses/create` | Create User Expenses | POST `{userId: 'uuid', expenseId: '', value: 1000, dateOfExpense: ''} `| {} |
