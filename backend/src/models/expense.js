@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     }
     Expense.init(
         {
-            category: DataTypes.STRING,
+            category: {
+                type:DataTypes.STRING,
+                defaultValue:'Uncategorised',
+            },
+            
         },
         {
             sequelize,
