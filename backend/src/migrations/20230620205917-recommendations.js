@@ -3,20 +3,35 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+   await queryInterface.createTable('Recommendations', {
+    recommendationId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+    },
+
+    // foreign key 
+    userId: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'Users', // name of the table we're referencing
+          key: 'id'
+        },
+        allowNull: false,
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE'
+      },
+
+    recommendationText: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    dateGenerated: Sequelize.DATE,
+
+   })
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.dropTable('Recommendations')
   }
 };
