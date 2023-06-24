@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease;
+  }
+  
+  header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+    transition: background-color 0.3s ease;
+  }
+  
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  #balance-display {
+    background-color: #28a745;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #transaction-form {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  #transaction-form:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  #transaction-form label,
+  #transaction-form input,
+  #transaction-form select,
+  #transaction-form button {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  #transaction-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #transaction-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  #transaction-list {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  #transaction-list:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  #transaction-items {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  @media (max-width: 768px) {
+    main {
+      padding: 10px;
+    }
+  }
+  
