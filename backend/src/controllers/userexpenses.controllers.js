@@ -1,42 +1,12 @@
-const { Sequelize } = require('sequelize');
-const db = require('../config/db');
+const { Op } = require('sequelize');
+const db = require('../models');
 // Define the User model
-const User = db.define('Users', {
-    id: { type: Sequelize.STRING, allowNull: false, primaryKey: true },
-});
+const User = db.User;
 
-const Expense = db.define('Expense', {
-    id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true },
-    category: { type: Sequelize.STRING },
-}, {
-    timestamps: false,
+const Expense = db.Expense;
 
-    // If don't want createdAt
-    createdAt: false,
+const UserExpenses = db.UserExpense;
 
-    // If don't want updatedAt
-    updatedAt: false,
-});
-
-const UserExpenses = db.define('User_Expenses', {
-    id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    userId: { type: Sequelize.STRING },
-    expenseId: { type: Sequelize.INTEGER },
-    value: { type: Sequelize.FLOAT },
-    dateOfExpense: { type: Sequelize.DATE },
-    createdAt: { type: Sequelize.DATE, defaultValue: new Date().getTime() },
-    updatedAt: { type: Sequelize.DATE, defaultValue: new Date().getTime() }
-})
-
-
-User.hasMany(UserExpenses, {
-    foreignKey: "userId"
-})
-UserExpenses.belongsTo(User, {
-    foreignKey: "userId"
-})
-
-UserExpenses.hasOne(Expense, { foreignKey: 'id' });
 
 // Create a new user expense
 const createUserExpense = async (req, res, next) => {
@@ -53,12 +23,42 @@ const createUserExpense = async (req, res, next) => {
 // Get all user expenses
 const getAllUserExpenses = async (req, res, next) => {
     try {
-        const userExpenses = await User.findOne({
-            where: {
-                id: req.body.id
-            },
-            include: [{ model: UserExpenses, include: Expense, }]
-        });
+        const { startDt, endDt } = req.query;
+        let userExpenses;
+
+        if (startDt && endDt) {
+            userExpenses = await User.findOne({
+                where: {
+                    id: req.body.id,
+                },
+                attributes: ["id"],
+                include: [{
+                    model: UserExpenses,
+                    where: {
+                        dateOfExpense: {
+                            [Op.between]: [startDt, endDt]
+                        },
+                    },
+                    as: 'expenses',
+                    attributes: { exclude: ['userId', 'expenseId'] },
+                    include:
+                        [{
+                            model: Expense,
+                            as: 'category',
+                            attributes: ['category']
+                        }]
+                }]
+            });
+        } else {
+            userExpenses = await User.findOne({
+                where: {
+                    id: req.body.id
+                },
+                attributes: ["id"],
+                include: [{ model: UserExpenses, as: 'expenses', attributes: { exclude: ['userId', 'expenseId'] }, include: [{ model: Expense, as: 'category', attributes: ['category'] }] }]
+            });
+        }
+
         res.status(200).send(userExpenses);
     } catch (error) {
         next(error);
@@ -69,25 +69,36 @@ const getAllUserExpenses = async (req, res, next) => {
 const getAllExpenses = async (req, res, next) => {
     try {
         const allExpenseCategories = await Expense.findAll();
-        res.status(200).send(allExpenseCategories);
+        res.status(200).send({
+            status: true,
+            allExpenseCategories
+        });
     } catch (error) {
         next(error);
     }
 }
 
 // Update a user expense
-const updateUserExpense = async (userExpenseId, expenseId, userId, value, dateOfExpense) => {
+const updateUserExpense = async (req, res, next) => {
+
     try {
-        const userExpense = await db.UserExpense.findByPk(userExpenseId);
+        const { ...details } = req.body;
+        let userExpense = await UserExpenses.findByPk(req.params.id);
+
         if (!userExpense) {
-            throw new Error('User expense not found');
+            next('User expense not found');
         }
-        userExpense.expenseId = expenseId;
-        userExpense.userId = userId;
-        userExpense.value = value;
-        userExpense.dateOfExpense = dateOfExpense;
-        await userExpense.save();
-        return userExpense;
+
+        userExpense = await UserExpenses.update(details, {
+            where: {
+                id: req.params.id
+            }
+        });
+
+        return res.status(201).json({
+            status: true,
+            userExpense
+        })
     } catch (error) {
         console.error('Error updating user expense:', error);
         throw error;
