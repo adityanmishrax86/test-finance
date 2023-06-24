@@ -24,6 +24,30 @@ const ensureAuthenticated = (req, res, next) => {
 
 };
 
+const errorHandler = (err, req, res, next) => {
+    res.status(err.status || 500);
+
+    if (err && err.name) {
+        if (err.name == "SequelizeForeignKeyConstraintError")
+            return res.status(500).json({
+                message: "Check for the id,",
+                status: false,
+            })
+
+        else if (err?.parent?.routine == "DateTimeParseError")
+            return res.status(500).json({
+                message: "Check for correct Start Date or End Date",
+                status: false,
+            })
+    }
+    res.json({
+        message: err.message,
+        status: false,
+        error: process.env.NODE_ENV !== 'production' ? err : {}
+    });
+}
+
 module.exports = {
-    ensureAuthenticated
+    ensureAuthenticated,
+    errorHandler
 }

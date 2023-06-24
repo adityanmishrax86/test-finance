@@ -4,7 +4,7 @@ const passport = require('passport');
 const AuthRouter = require("./routes/auth.routes");
 const UserRouter = require("./routes/user.route");
 const ExpenseRouter = require("./routes/userexpenses.routes");
-const { ensureAuthenticated } = require("./middlewares/index");
+const { ensureAuthenticated, errorHandler } = require("./middlewares/index");
 
 const dotenv = require('dotenv');
 
@@ -88,13 +88,7 @@ app.use(function (req, res, next) {
 });
 
 //Error Handler
-app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.json({
-        message: err.message,
-        error: process.env.NODE_ENV !== 'production' ? err : {}
-    });
-});
+app.use(errorHandler);
 
 
 // Start the server

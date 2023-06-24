@@ -4,7 +4,7 @@ const Auth0Strategy = require('passport-auth0');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
-const db = require('../config/db');
+const db = require('../models');
 
 
 const { v4: uuidv4 } = require('uuid');
@@ -14,12 +14,7 @@ dotenv.config();
 
 
 // Define the User model
-const User = db.define('User', {
-    auth0id: { type: Sequelize.STRING, allowNull: true },
-    name: { type: Sequelize.STRING, allowNull: false },
-    email: { type: Sequelize.STRING, allowNull: false },
-    password: { type: Sequelize.STRING, allowNull: true }
-});
+const User = db.User;
 
 function authUser(user) {
     return jwt.sign({ id: user.id }, process.env.JWT_KEY, {
@@ -47,6 +42,8 @@ const setupPassport = () => {
                 })
 
                 if (user) {
+                    if (!user.auth0id)
+                        await User.update({ auth0id: profile.id }, { where: { email: profile.emails[0].value } })
                     done(null, {
                         name: user.name,
                         id: user.id
