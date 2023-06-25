@@ -74,12 +74,12 @@ app.get(
 );
 
 // Profile route to display user details
-app.get('/profile', ensureAuthenticated, (req, res) => {
-    res.send({
-        status: true,
-        user: Object.keys(req.user).length > 0 ? req.user : req.username
-    });
-});
+// app.get('/profile', ensureAuthenticated, (req, res) => {
+//     res.send({
+//         status: true,
+//         user: Object.keys(req.user).length > 0 ? req.user : req.username
+//     });
+// });
 
 //catch route not found
 app.use(function (req, res, next) {
