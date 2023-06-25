@@ -5,7 +5,7 @@ const AuthRouter = require("./api/v1/routes/auth.routes");
 const UserRouter = require("./api/v1/routes/user.route");
 const ExpenseRouter = require("./api/v1/routes/userexpenses.routes");
 const InsightRouter = require('./api/v1/routes/insight.routes');
-const { ensureAuthenticated } = require("./middlewares/index");
+const { ensureAuthenticated, errorHandler } = require("./middlewares/index");
 
 const dotenv = require('dotenv');
 
@@ -55,10 +55,10 @@ app.get('/', (req, res, next) => {
     });
 })
 
-app.use("/api/v1", AuthRouter);
-app.use("/api/v1", UserRouter);
-app.use("/api/v1", ExpenseRouter);
-app.use("/api/v1", InsightRouter);
+app.use("/api/v1/auth", AuthRouter);
+app.use("/api/v1/users", UserRouter);
+app.use("/api/v1/expenses", ExpenseRouter);
+app.use("/api/v1/insights", InsightRouter);
 // Auth0 callback route
 app.get(
     '/callback',
@@ -74,12 +74,12 @@ app.get(
 );
 
 // Profile route to display user details
-// app.get('/profile', ensureAuthenticated, (req, res) => {
-//     res.send({
-//         status: true,
-//         user: Object.keys(req.user).length > 0 ? req.user : req.username
-//     });
-// });
+app.get('/profile', ensureAuthenticated, (req, res) => {
+    res.send({
+        status: true,
+        user: Object.keys(req.user).length > 0 ? req.user : req.username
+    });
+});
 
 //catch route not found
 app.use(function (req, res, next) {
