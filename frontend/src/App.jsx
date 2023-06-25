@@ -1,22 +1,13 @@
-
-import './App.css'
-
-
-
+import "./App.css";
 
 function App() {
-
-  function login() {
-    window.location.href = '/login';
-  }
-  
-
   return (
     <>
-      <button onClick={login}>Login</button>
-
+      <div>
+        <h1>Presonal Finance Tracker</h1>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

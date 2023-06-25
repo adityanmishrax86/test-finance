@@ -1,19 +1,19 @@
 "use strict";
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+const { Model } = require("sequelize");
 
-class Recommendation extends Model {}
+module.exports = (sequelize, DataTypes) => {
+  class Recommendation extends Model { }
 
-Recommendation.init(
-  {
-    recommendationId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-    },
+  Recommendation.init(
+    {
+      recommendationId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
 
-    // foreign key 
-    userId: {
+      // foreign key 
+      userId: {
         type: DataTypes.UUID,
         references: {
           model: 'Users', // name of the table we're referencing
@@ -22,16 +22,18 @@ Recommendation.init(
         allowNull: false
       },
 
-    recommendationText: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      recommendationText: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      dateGenerated: DataTypes.DATE,
     },
-    dateGenerated: DataTypes.DATE,
-  },
-  {
-    sequelize,
-    modelName: Recommendation,
-  }
-);
+    {
+      sequelize,
+      modelName: "Recommendation",
+    }
+  );
+  return Recommendation;
+}
 
-module.exports=Recommendation;
+

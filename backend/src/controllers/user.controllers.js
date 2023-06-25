@@ -1,17 +1,17 @@
-const { Sequelize } = require('sequelize');
-const db = require('../config/db');
+
+const db = require("../models");
 // Define the User model
-const User = db.define('User', {
-    id: { type: Sequelize.STRING, allowNull: false, primaryKey: true },
-    name: { type: Sequelize.STRING, allowNull: false },
-    email: { type: Sequelize.STRING, allowNull: false },
-});
+const User = db.User;
 
 const userOps = {
     async getAllUsers(req, res, next) {
         let users;
         try {
-            users = await User.findAll({})
+            users = await User.findAll({
+                attributes: {
+                    exclude: ['password']
+                }
+            })
         } catch (err) {
             next(err);
         }
@@ -24,6 +24,9 @@ const userOps = {
             user = await User.findOne({
                 where: {
                     id: req.params.id
+                },
+                attributes: {
+                    exclude: ['password']
                 }
             })
 
@@ -42,6 +45,9 @@ const userOps = {
             user = await User.update(details, {
                 where: {
                     id: id
+                },
+                attributes: {
+                    exclude: ['password']
                 }
             })
 

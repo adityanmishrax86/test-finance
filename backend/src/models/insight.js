@@ -1,39 +1,42 @@
-const sequelize=require("../config/db");
-const {Model, DataTypes}=require("sequelize");
+const { Model } = require("sequelize");
 
-class Insight extends Model{}
+module.exports = (sequelize, DataTypes) => {
+    class Insight extends Model { }
 
-Insight.init({
+    Insight.init({
 
-    insightId:{
-        type:DataTypes.INTEGER,
-        allowNull:false,
-        primaryKey:true,
-    },
-
-    userId:{
-        type:DataTypes.UUID,
-        references:{
-            model:"Users",
-            key:'id'
+        insightId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
         },
-        allowNull:false
-    },
-    insightText:{
-        type:DataTypes.TEXT,
-        allowNull:true,
+
+        userId: {
+            type: DataTypes.UUID,
+            references: {
+                model: "Users",
+                key: 'id'
+            },
+            allowNull: false
+        },
+        insightText: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+
+        },
+        dateGenerated: {
+            type: DataTypes.DATE
+        },
+
 
     },
-    dateGenerated:{
-        type:DataTypes.DATE
-    },
 
-    
-},
+        {
+            sequelize,
+            modelName: 'Insight'
+        });
+    return Insight;
+}
 
-{
-    sequelize,
-    modelName:sequelize
-});
 
-module.exports=Insight;
+

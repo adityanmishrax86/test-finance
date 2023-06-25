@@ -10,15 +10,18 @@ module.exports = (sequelize, DataTypes) => {
     }
     Expense.init(
         {
+            id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
             category: {
-                type:DataTypes.STRING,
-                defaultValue:'Uncategorised',
-            },
-            
+                type: DataTypes.STRING,
+                defaultValue: 'Uncategorised',
+            }
         },
         {
             sequelize,
             modelName: 'Expense',
+            timestamps: false,
+            createdAt: false,
+            updatedAt: false,
         }
     );
     return Expense;
