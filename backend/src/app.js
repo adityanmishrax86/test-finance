@@ -1,9 +1,10 @@
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
-const AuthRouter = require("./routes/auth.routes");
-const UserRouter = require("./routes/user.route");
-const ExpenseRouter = require("./routes/userexpenses.routes");
+const AuthRouter = require("./api/v1/routes/auth.routes");
+const UserRouter = require("./api/v1/routes/user.route");
+const ExpenseRouter = require("./api/v1/routes/userexpenses.routes");
+const InsightRouter=require('./api/v1/routes/insight.routes');
 const { ensureAuthenticated } = require("./middlewares/index");
 
 const dotenv = require('dotenv');
@@ -54,10 +55,10 @@ app.get('/', (req, res, next) => {
     });
 })
 
-app.use("/auth", AuthRouter);
-app.use("/user", UserRouter);
-app.use("/expenses", ExpenseRouter);
-
+app.use("/api/v1", AuthRouter);
+app.use("/api/v1", UserRouter);
+app.use("/api/v1", ExpenseRouter);
+app.use("/api/v1", InsightRouter);
 // Auth0 callback route
 app.get(
     '/callback',
@@ -82,7 +83,7 @@ app.get('/profile', ensureAuthenticated, (req, res) => {
 
 //catch route not found
 app.use(function (req, res, next) {
-    const err = new Error('Not Found');
+    const err = new Error('Route Not Found');
     err.status = 404;
     next(err);
 });
