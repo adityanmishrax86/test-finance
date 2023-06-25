@@ -113,5 +113,6 @@ module.exports = {
     getAllExpenses,
     getAllUserExpenses,
     createUserExpense,
-    updateUserExpense
+    updateUserExpense,
+    deleteUserExpense
 }
