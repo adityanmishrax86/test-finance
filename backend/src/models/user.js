@@ -10,6 +10,16 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "userId",
         as: 'expenses'
       })
+
+      User.hasMany(models.UserIncome, {
+        foreignKey: "userId",
+        as: 'incomes'
+      })
+
+      User.hasMany(models.UserSubscriptions, {
+        foreignKey: "userId",
+        as: 'subscriptions'
+      })
     }
   }
   User.init({
