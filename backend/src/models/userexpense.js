@@ -18,10 +18,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   UserExpense.init({
     id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING },
+    description: { type: DataTypes.STRING },
     userId: { type: DataTypes.STRING },
     expenseId: { type: DataTypes.INTEGER },
     value: { type: DataTypes.FLOAT },
     dateOfExpense: { type: DataTypes.DATE },
+    modeOfExpense: { type: DataTypes.ENUM('UPI', 'CASH', 'DEBIT CARD', 'CREDIT CARD'), defaultValue: 'UPI' },
     createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
     updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
   }, {
