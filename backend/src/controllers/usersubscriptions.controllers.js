@@ -33,11 +33,11 @@ const getAllUserSubscriptions = async (req, res, next) => {
                 include: [{
                     model: UserSubscriptions,
                     where: {
-                        dateOfIncome: {
+                        createdAt: {
                             [Op.between]: [startDt, endDt]
                         },
                     },
-                    as: 'incomes',
+                    as: 'subscriptions',
                     attributes: { exclude: ['userId'] },
                 }]
             });
@@ -61,17 +61,17 @@ const getAllUserSubscriptions = async (req, res, next) => {
 
 
 // Update a user expense
-const updateUserExpense = async (req, res, next) => {
+const updateUserSubscription = async (req, res, next) => {
 
     try {
         const { ...details } = req.body;
-        let userIncome = await UserSubscriptions.findByPk(req.params.id);
+        let userSubscription = await UserSubscriptions.findByPk(req.params.id);
 
-        if (!userIncome) {
+        if (!userSubscription) {
             next('User income not found');
         }
 
-        userIncome = await UserSubscriptions.update(details, {
+        userSubscription = await UserSubscriptions.update(details, {
             where: {
                 id: req.params.id
             }
@@ -79,7 +79,7 @@ const updateUserExpense = async (req, res, next) => {
 
         return res.status(201).json({
             status: true,
-            userIncome
+            userSubscription
         })
     } catch (error) {
         console.error('Error updating user expense:', error);
@@ -105,5 +105,5 @@ const deleteUserExpense = async (userExpenseId) => {
 module.exports = {
     createUserSubscriptions,
     getAllUserSubscriptions,
-    updateUserExpense
+    updateUserSubscription
 }
