@@ -7,6 +7,7 @@ const UserRouter = require("./api/v1/routes/user.route");
 const ExpenseRouter = require("./api/v1/routes/userexpenses.routes");
 const InsightRouter = require('./api/v1/routes/insight.routes');
 const IncomeRouter = require('./api/v1/routes/userincomes.routes');
+const SubscriptionRouter = require('./api/v1/routes/usersubscriptions.routes');
 
 const { ensureAuthenticated, errorHandler } = require("./middlewares/index");
 
@@ -63,6 +64,7 @@ app.use("/api/v1/users", UserRouter);
 app.use("/api/v1/expenses", ExpenseRouter);
 app.use("/api/v1/insights", InsightRouter);
 app.use("/api/v1/incomes", IncomeRouter);
+app.use("/api/v1/subscriptions", SubscriptionRouter)
 
 // Auth0 callback route
 app.get(

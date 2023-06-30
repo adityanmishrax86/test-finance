@@ -3,15 +3,15 @@ const db = require('../models');
 // Define the User model
 const User = db.User;
 
-const UserIncome = db.UserIncome;
+const UserSubscriptions = db.UserSubscriptions;
 
 
 // Create a new user expense
-const createUserIncome = async (req, res, next) => {
-    const { name, description, userId, value, dateOfIncome, incomeType, modeOfIncome } = req.body;
+const createUserSubscriptions = async (req, res, next) => {
+    const { name, description, userId, value, subType } = req.body;
     try {
-        const userIncome = await UserIncome.create({ name, description, userId, value, dateOfIncome, incomeType, modeOfIncome });
-        return res.status(200).send(userIncome);
+        const userSubscriptions = await UserSubscriptions.create({ name, description, userId, value, subType });
+        return res.status(200).send(userSubscriptions);
     } catch (error) {
         console.log(error)
         next(error);
@@ -19,19 +19,19 @@ const createUserIncome = async (req, res, next) => {
 };
 
 // Get all user expenses
-const getAllUserIncomes = async (req, res, next) => {
+const getAllUserSubscriptions = async (req, res, next) => {
     try {
         const { startDt, endDt } = req.query;
-        let userIncomes;
+        let userSubscriptions;
 
         if (startDt && endDt) {
-            userIncomes = await User.findOne({
+            userSubscriptions = await User.findOne({
                 where: {
                     id: req.body.id,
                 },
                 attributes: ["id"],
                 include: [{
-                    model: UserIncome,
+                    model: UserSubscriptions,
                     where: {
                         dateOfIncome: {
                             [Op.between]: [startDt, endDt]
@@ -42,18 +42,18 @@ const getAllUserIncomes = async (req, res, next) => {
                 }]
             });
         } else {
-            userIncomes = await User.findOne({
+            userSubscriptions = await User.findOne({
                 where: {
                     id: req.body.id
                 },
                 attributes: ["id"],
                 include: [{
-                    model: UserIncome, as: 'incomes', attributes: { exclude: ['userId'] }
+                    model: UserSubscriptions, as: 'subscriptions', attributes: { exclude: ['userId'] }
                 }]
             });
         }
 
-        res.status(200).send(userIncomes);
+        res.status(200).send(userSubscriptions);
     } catch (error) {
         next(error);
     }
@@ -65,13 +65,13 @@ const updateUserExpense = async (req, res, next) => {
 
     try {
         const { ...details } = req.body;
-        let userIncome = await UserIncome.findByPk(req.params.id);
+        let userIncome = await UserSubscriptions.findByPk(req.params.id);
 
         if (!userIncome) {
             next('User income not found');
         }
 
-        userIncome = await UserIncome.update(details, {
+        userIncome = await UserSubscriptions.update(details, {
             where: {
                 id: req.params.id
             }
@@ -103,7 +103,7 @@ const deleteUserExpense = async (userExpenseId) => {
 };
 
 module.exports = {
-    createUserIncome,
-    getAllUserIncomes,
+    createUserSubscriptions,
+    getAllUserSubscriptions,
     updateUserExpense
 }
