@@ -29,7 +29,7 @@ const getAllUserExpenses = async (req, res, next) => {
         if (startDt && endDt) {
             userExpenses = await User.findOne({
                 where: {
-                    id: req.body.id,
+                    id: req.query.id,
                 },
                 attributes: ["id"],
                 include: [{
@@ -52,7 +52,7 @@ const getAllUserExpenses = async (req, res, next) => {
         } else {
             userExpenses = await User.findOne({
                 where: {
-                    id: req.body.id
+                    id: req.query.id
                 },
                 attributes: ["id"],
                 include: [{ model: UserExpenses, as: 'expenses', attributes: { exclude: ['userId', 'expenseId'] }, include: [{ model: Expense, as: 'category', attributes: ['category'] }] }]

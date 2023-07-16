@@ -23,7 +23,7 @@ const userOps = {
         try {
             user = await User.findOne({
                 where: {
-                    id: req.params.id
+                    id: req.query.id
                 },
                 attributes: {
                     exclude: ['password']

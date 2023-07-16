@@ -27,7 +27,7 @@ const getAllUserIncomes = async (req, res, next) => {
         if (startDt && endDt) {
             userIncomes = await User.findOne({
                 where: {
-                    id: req.body.id,
+                    id: req.query.id,
                 },
                 attributes: ["id"],
                 include: [{
@@ -44,7 +44,7 @@ const getAllUserIncomes = async (req, res, next) => {
         } else {
             userIncomes = await User.findOne({
                 where: {
-                    id: req.body.id
+                    id: req.query.id
                 },
                 attributes: ["id"],
                 include: [{
