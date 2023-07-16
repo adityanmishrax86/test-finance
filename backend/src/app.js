@@ -2,12 +2,12 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 
-const AuthRouter = require("./api/v1/routes/auth.routes");
-const UserRouter = require("./api/v1/routes/user.route");
-const ExpenseRouter = require("./api/v1/routes/userexpenses.routes");
-const InsightRouter = require('./api/v1/routes/insight.routes');
-const IncomeRouter = require('./api/v1/routes/userincomes.routes');
-const SubscriptionRouter = require('./api/v1/routes/usersubscriptions.routes');
+const AuthRouter = require("./api/v1/auth.routes");
+const UserRouter = require("./api/v1/user.route");
+const ExpenseRouter = require("./api/v1/userexpenses.routes");
+const InsightRouter = require('./api/v1/insight.routes');
+const IncomeRouter = require('./api/v1/userincomes.routes');
+const SubscriptionRouter = require('./api/v1/usersubscriptions.routes');
 
 const { ensureAuthenticated, errorHandler } = require("./middlewares/index");
 

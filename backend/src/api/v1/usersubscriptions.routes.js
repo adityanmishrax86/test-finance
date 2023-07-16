@@ -1,5 +1,5 @@
-const { createUserSubscriptions, getAllUserSubscriptions, updateUserSubscription } = require('../../../controllers/usersubscriptions.controllers');
-const { ensureAuthenticated } = require('../../../middlewares');
+const { createUserSubscriptions, getAllUserSubscriptions, updateUserSubscription } = require('../../controllers/usersubscriptions.controllers');
+const { ensureAuthenticated } = require('../../middlewares');
 
 const router = require('express').Router();
 

@@ -1,5 +1,5 @@
 
-const {getInsights}=require('../../../controllers/insight.controllers');
+const {getInsights}=require('../../controllers/insight.controllers');
 
 // const { ensureAuthenticated } = require('../../../middlewares');
 

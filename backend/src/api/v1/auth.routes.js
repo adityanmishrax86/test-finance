@@ -2,7 +2,7 @@ const router = require('express').Router();
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
-const db = require('../../../models');
+const db = require('../../models');
 
 const dotenv = require('dotenv');
 dotenv.config();

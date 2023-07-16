@@ -1,5 +1,5 @@
-const { createUserIncome, getAllUserIncomes, updateUserExpense } = require('../../../controllers/userincomes.controllers');
-const { ensureAuthenticated } = require('../../../middlewares');
+const { createUserIncome, getAllUserIncomes, updateUserExpense } = require('../../controllers/userincomes.controllers');
+const { ensureAuthenticated } = require('../../middlewares');
 
 const router = require('express').Router();
 
