@@ -1,5 +1,5 @@
-const { getAllUsers, getUserById, updateUserDetails } = require('../../../controllers/user.controllers');
-const { ensureAuthenticated } = require('../../../middlewares');
+const { getAllUsers, getUserById, updateUserDetails } = require('../../controllers/user.controllers');
+const { ensureAuthenticated } = require('../../middlewares');
 
 const router = require('express').Router();
 

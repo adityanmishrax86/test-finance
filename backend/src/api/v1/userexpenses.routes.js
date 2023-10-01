@@ -1,5 +1,5 @@
-const { getAllExpenses, createUserExpense, getAllUserExpenses, updateUserExpense } = require('../../../controllers/userexpenses.controllers');
-const { ensureAuthenticated } = require('../../../middlewares');
+const { getAllExpenses, createUserExpense, getAllUserExpenses, updateUserExpense } = require('../../controllers/userexpenses.controllers');
+const { ensureAuthenticated } = require('../../middlewares');
 
 const router = require('express').Router();
 

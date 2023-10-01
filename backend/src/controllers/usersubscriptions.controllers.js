@@ -27,7 +27,7 @@ const getAllUserSubscriptions = async (req, res, next) => {
         if (startDt && endDt) {
             userSubscriptions = await User.findOne({
                 where: {
-                    id: req.body.id,
+                    id: req.query.id,
                 },
                 attributes: ["id"],
                 include: [{
@@ -44,7 +44,7 @@ const getAllUserSubscriptions = async (req, res, next) => {
         } else {
             userSubscriptions = await User.findOne({
                 where: {
-                    id: req.body.id
+                    id: req.query.id
                 },
                 attributes: ["id"],
                 include: [{
