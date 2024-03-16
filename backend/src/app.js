@@ -79,6 +79,12 @@ app.use(passport.session());
 
 setupPassport();
 
+app.get("/status", (req, res, next) => {
+  res.send({
+    success: "true",
+  });
+});
+
 app.get("/", (req, res, next) => {
   res.send({
     status: req.user ? true : false,
