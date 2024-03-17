@@ -54,9 +54,11 @@ app.set("trust proxy", true);
 app.use(helmet());
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: ["https://mydailytodailyneed.netlify.app"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, // allow session cookie from browser to pass through
+    credentials: true,
+    optionsSuccessStatus: 200, // allow session cookie from browser to pass through
   })
 );
 
