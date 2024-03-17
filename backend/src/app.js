@@ -54,7 +54,8 @@ app.set("trust proxy", true);
 app.use(helmet());
 app.use(
   cors({
-    origin: process.env.ORIGIN,
+    origin: ["https://mydailytodailyneed.netlify.app"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     optionsSuccessStatus: 200, // allow session cookie from browser to pass through
