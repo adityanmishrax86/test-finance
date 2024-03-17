@@ -54,9 +54,10 @@ app.set("trust proxy", true);
 app.use(helmet());
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: process.env.ORIGIN,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, // allow session cookie from browser to pass through
+    credentials: true,
+    optionsSuccessStatus: 200, // allow session cookie from browser to pass through
   })
 );
 
